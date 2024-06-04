@@ -46,6 +46,12 @@ const weightInput = document.querySelector("#weight")
 const calcBtn = document.querySelector("#calc-btn")
 const clearBtn = document.querySelector("#clear-btn")
 
+const imcNumber = document.querySelector(".imc-number span")
+const imcInfo = document.querySelector(".imc-info span")
+const backBtn = document.querySelector("#back-btn")
+
+const calcContainer = document.querySelector("#calc-container")
+const resultContainer = document.querySelector("#result-container")
 
 //Funções
 function creatTable(data) {
@@ -87,6 +93,14 @@ function validDigits(text){
 function calcImc(weight, height){
     const imc = (weight / (height * height)).toFixed(1);
     return imc
+};
+
+//função backbtn
+
+//
+function showOrHideResult(){
+    calcContainer.classList.toggle("hide")
+    resultContainer.classList.toggle("hide")
 }
 
 // Inicialização
@@ -130,4 +144,16 @@ calcBtn.addEventListener("click", (e) => {
 
     
     if(!info) return;
+    //
+    imcNumber.innerText = imc
+    imcInfo.innerText = info
+
+    //
+    showOrHideResult()
+})
+
+//evento backbtn
+backBtn.addEventListener("click", () => {
+    cleanInputs();
+    showOrHideResult();
 })
